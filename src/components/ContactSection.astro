@@ -1,0 +1,80 @@
+<section id="contact" class="section">
+  <div class="container grid gap-10 md:grid-cols-[.9fr_1.1fr]">
+    <div>
+      <p class="eyebrow">Contact</p>
+      <h2 class="section-title">Tell us about your event.</h2>
+      <p class="mt-4 body-copy max-w-md">
+        Share the date, venue, event type, and any preferred ensemble size or instrumentation, and we’ll get
+        back to you with availability and details.
+      </p>
+    </div>
+
+    <div class="card p-6 md:p-8">
+      <form
+        action="https://formspree.io/f/YOUR_FORM_ID"
+        method="POST"
+        class="grid gap-5"
+      >
+        <div>
+          <label for="name" class="mb-2 block text-sm font-medium">Name</label>
+          <input
+            id="name"
+            name="name"
+            type="text"
+            required
+            class="w-full rounded-2xl border border-black/10 bg-transparent px-4 py-3 outline-none transition focus:border-ink"
+          />
+        </div>
+
+        <div>
+          <label for="email" class="mb-2 block text-sm font-medium">Email</label>
+          <input
+            id="email"
+            name="email"
+            type="email"
+            required
+            class="w-full rounded-2xl border border-black/10 bg-transparent px-4 py-3 outline-none transition focus:border-ink"
+          />
+        </div>
+
+        <div>
+          <label for="eventType" class="mb-2 block text-sm font-medium">Event Type</label>
+          <input
+            id="eventType"
+            name="eventType"
+            type="text"
+            placeholder="Wedding, corporate event, private party..."
+            class="w-full rounded-2xl border border-black/10 bg-transparent px-4 py-3 outline-none transition focus:border-ink"
+          />
+        </div>
+
+        <div>
+          <label for="ensemble" class="mb-2 block text-sm font-medium">Preferred Ensemble</label>
+          <input
+            id="ensemble"
+            name="ensemble"
+            type="text"
+            placeholder="Duo, trio, quartet, quintet, or custom..."
+            class="w-full rounded-2xl border border-black/10 bg-transparent px-4 py-3 outline-none transition focus:border-ink"
+          />
+        </div>
+
+        <div>
+          <label for="message" class="mb-2 block text-sm font-medium">Message</label>
+          <textarea
+            id="message"
+            name="message"
+            rows="6"
+            required
+            placeholder="Tell us about the venue, date, guest count, and any instrumentation or style preferences."
+            class="w-full rounded-2xl border border-black/10 bg-transparent px-4 py-3 outline-none transition focus:border-ink"
+          ></textarea>
+        </div>
+
+        <button type="submit" class="button-primary w-full sm:w-auto">
+          Send Inquiry
+        </button>
+      </form>
+    </div>
+  </div>
+</section>

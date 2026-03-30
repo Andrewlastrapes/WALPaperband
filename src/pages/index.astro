@@ -1,0 +1,25 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Header from "../components/Header.astro";
+import Hero from "../components/Hero.astro";
+import About from "../components/About.astro";
+import MediaPreview from "../components/MediaPreview.astro";
+import EventTypes from "../components/EventTypes.astro";
+import ContactSection from "../components/ContactSection.astro";
+import Footer from "../components/Footer.astro";
+---
+
+<BaseLayout
+  title="WAL Paper Band | Flexible Live Jazz for Events"
+  description="Flexible live jazz for weddings, corporate events, and private parties — from intimate duos to full ensembles."
+>
+  <Header />
+  <main>
+    <Hero />
+    <About />
+    <MediaPreview />
+    <EventTypes />
+    <ContactSection />
+  </main>
+  <Footer />
+</BaseLayout>
