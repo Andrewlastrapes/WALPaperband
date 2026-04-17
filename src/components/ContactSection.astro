@@ -75,52 +75,55 @@
   </div>
 </section>
 
-<script>
-  const form = document.getElementById("contact-form") as HTMLFormElement | null;
+<script is:inline>
+  document.addEventListener("DOMContentLoaded", () => {
+    const form = document.getElementById("contact-form");
 
-if (!form) {
-  console.error("Contact form not found");
-} else {
-  form.addEventListener("submit", async (e) => {
-    e.preventDefault();
+    if (!form) {
+      console.error("Contact form not found");
+      return;
+    }
 
-    const formData = new FormData(form);
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
 
-    const data = {
-      name: formData.get("name"),
-      email: formData.get("email"),
-      message: `
+      const formData = new FormData(form);
+
+      const data = {
+        name: formData.get("name"),
+        email: formData.get("email"),
+        message: `
 Event Type: ${formData.get("eventType")}
 Ensemble: ${formData.get("ensemble")}
 
 ${formData.get("message")}
-      `,
-    };
+        `,
+      };
 
-    try {
-      const res = await fetch(
-        "https://2jawaum1tb.execute-api.us-east-1.amazonaws.com/contact",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(data),
+      try {
+        const res = await fetch(
+          "https://2jawaum1tb.execute-api.us-east-1.amazonaws.com/contact",
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify(data),
+          }
+        );
+
+        const result = await res.json();
+
+        if (result.success) {
+          alert("Thanks — we’ll be in touch soon.");
+          form.reset();
+        } else {
+          alert("Something went wrong. Please try again.");
         }
-      );
-
-      const result = await res.json();
-
-      if (result.success) {
-        alert("Thanks — we’ll be in touch soon.");
-        form.reset();
-      } else {
-        alert("Something went wrong. Please try again.");
+      } catch (err) {
+        console.error(err);
+        alert("Error sending message.");
       }
-    } catch (err) {
-      console.error(err);
-      alert("Error sending message.");
-    }
+    });
   });
-}
 </script>

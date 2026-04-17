@@ -42,11 +42,57 @@ Share the date, venue, event type, and any preferred ensemble size or instrument
         back to you with availability and details.
 </p> </div> <div class="card p-6 md:p-8"> <form id="contact-form" class="grid gap-5"> <div> <label for="name" class="mb-2 block text-sm font-medium">Name</label> <input id="name" name="name" type="text" required class="w-full rounded-2xl border border-black/10 bg-transparent px-4 py-3 outline-none transition focus:border-ink"> </div> <div> <label for="email" class="mb-2 block text-sm font-medium">Email</label> <input id="email" name="email" type="email" required class="w-full rounded-2xl border border-black/10 bg-transparent px-4 py-3 outline-none transition focus:border-ink"> </div> <div> <label for="eventType" class="mb-2 block text-sm font-medium">Event Type</label> <input id="eventType" name="eventType" type="text" placeholder="Wedding, corporate event, private party..." class="w-full rounded-2xl border border-black/10 bg-transparent px-4 py-3 outline-none transition focus:border-ink"> </div> <div> <label for="ensemble" class="mb-2 block text-sm font-medium">Preferred Ensemble</label> <input id="ensemble" name="ensemble" type="text" placeholder="Duo, trio, quartet, quintet, or custom..." class="w-full rounded-2xl border border-black/10 bg-transparent px-4 py-3 outline-none transition focus:border-ink"> </div> <div> <label for="message" class="mb-2 block text-sm font-medium">Message</label> <textarea id="message" name="message" rows="6" required placeholder="Tell us about the venue, date, guest count, and any instrumentation or style preferences." class="w-full rounded-2xl border border-black/10 bg-transparent px-4 py-3 outline-none transition focus:border-ink"></textarea> </div> <button type="submit" class="button-primary w-full sm:w-auto">
 Send Inquiry
-</button> </form> </div> </div> </section> <script type="module">const t=document.getElementById("contact-form");t?t.addEventListener("submit",async n=>{n.preventDefault();const e=new FormData(t),s={name:e.get("name"),email:e.get("email"),message:`
-Event Type: ${e.get("eventType")}
-Ensemble: ${e.get("ensemble")}
+</button> </form> </div> </div> </section> <script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const form = document.getElementById("contact-form");
 
-${e.get("message")}
-      `};try{(await(await fetch("https://2jawaum1tb.execute-api.us-east-1.amazonaws.com/contact",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(s)})).json()).success?(alert("Thanks — we’ll be in touch soon."),t.reset()):alert("Something went wrong. Please try again.")}catch(a){console.error(a),alert("Error sending message.")}}):console.error("Contact form not found");</script> </main> <footer class="border-t border-black/8 px-6 py-8 md:px-10"> <div class="container flex flex-col gap-3 text-sm text-black/60 md:flex-row md:items-center md:justify-between"> <p>© 2026 Lastrapes Ensemble. All rights reserved.</p> <div class="flex gap-5"> <a href="mailto:you@example.com" class="transition hover:text-black">Email</a> <a href="https://instagram.com" target="_blank" rel="noreferrer" class="transition hover:text-black">
+    if (!form) {
+      console.error("Contact form not found");
+      return;
+    }
+
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
+
+      const formData = new FormData(form);
+
+      const data = {
+        name: formData.get("name"),
+        email: formData.get("email"),
+        message: `
+Event Type: ${formData.get("eventType")}
+Ensemble: ${formData.get("ensemble")}
+
+${formData.get("message")}
+        `,
+      };
+
+      try {
+        const res = await fetch(
+          "https://2jawaum1tb.execute-api.us-east-1.amazonaws.com/contact",
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify(data),
+          }
+        );
+
+        const result = await res.json();
+
+        if (result.success) {
+          alert("Thanks — we’ll be in touch soon.");
+          form.reset();
+        } else {
+          alert("Something went wrong. Please try again.");
+        }
+      } catch (err) {
+        console.error(err);
+        alert("Error sending message.");
+      }
+    });
+  });
+</script> </main> <footer class="border-t border-black/8 px-6 py-8 md:px-10"> <div class="container flex flex-col gap-3 text-sm text-black/60 md:flex-row md:items-center md:justify-between"> <p>© 2026 Lastrapes Ensemble. All rights reserved.</p> <div class="flex gap-5"> <a href="mailto:you@example.com" class="transition hover:text-black">Email</a> <a href="https://instagram.com" target="_blank" rel="noreferrer" class="transition hover:text-black">
 Instagram
 </a> </div> </div> </footer>  </body></html>
