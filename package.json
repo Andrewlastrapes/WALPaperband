@@ -7,6 +7,7 @@
     "dev": "astro dev",
     "start": "astro dev",
     "build": "astro build",
+    "deploy": "npm run build && aws s3 sync dist/ s3://andrewlastrapes.com --delete && aws cloudfront create-invalidation --distribution-id ETY7T2HGL5CBE --paths '/*'",
     "preview": "astro preview"
   },
   "dependencies": {
