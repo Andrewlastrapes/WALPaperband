@@ -1,0 +1,56 @@
+---
+import BaseLayout from "../layouts/Baselayout.astro";
+import Header from "../components/Header.astro";
+import Hero from "../components/Hero.astro";
+import About from "../components/About.astro";
+import MediaPreview from "../components/MediaPreview.astro";
+import EventTypes from "../components/EventTypes.astro";
+import ContactSection from "../components/ContactSection.astro";
+import Footer from "../components/Footer.astro";
+
+const title = "Atlanta Jazz Band for Hire | Lastrapes Ensemble";
+const description =
+  "Lastrapes Ensemble is an Atlanta jazz band for hire led by guitarist Andrew Lastrapes, providing live jazz for weddings, corporate events, cocktail hours, restaurants, private parties, ceremonies, and background music.";
+const canonical = "https://andrewlastrapes.com/atlanta-jazz-band-for-hire";
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "MusicGroup",
+  name: "Lastrapes Ensemble",
+  foundingMember: {
+    "@type": "Person",
+    name: "Andrew Lastrapes",
+  },
+  url: canonical,
+  areaServed: {
+    "@type": "Place",
+    name: "Atlanta, Georgia",
+  },
+  genre: ["Jazz", "Swing", "Bossa Nova", "Background Music", "Wedding Music"],
+  description,
+  sameAs: [
+    "https://www.youtube.com/@andrewlastrapes",
+    "https://instagram.com",
+  ],
+};
+---
+
+<BaseLayout {title} {description} {canonical}>
+  <Fragment slot="head">
+    <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+  </Fragment>
+
+  <Header basePath="/atlanta-jazz-band-for-hire" />
+  <main>
+    <Hero
+      eyebrow="Atlanta Jazz Band for Hire"
+      headline="Atlanta Jazz Band for Hire"
+      subtext="Lastrapes Ensemble is an Atlanta-based jazz group led by guitarist Andrew Lastrapes — available for weddings, corporate events, cocktail hours, private parties, restaurants, ceremonies, and reception-style gatherings, with flexible instrumentation tailored to your event."
+    />
+    <About />
+    <MediaPreview />
+    <EventTypes />
+    <ContactSection />
+  </main>
+  <Footer />
+</BaseLayout>

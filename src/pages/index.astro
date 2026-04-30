@@ -1,5 +1,5 @@
 ---
-import BaseLayout from "../layouts/BaseLayout.astro";
+import BaseLayout from "../layouts/Baselayout.astro";
 import Header from "../components/Header.astro";
 import Hero from "../components/Hero.astro";
 import About from "../components/About.astro";
@@ -12,11 +12,35 @@ import Footer from "../components/Footer.astro";
 <BaseLayout
   title="Lastrapes Ensemble | Flexible Live Jazz for Events"
   description="Flexible live jazz for weddings, corporate events, and private parties — from intimate duos to full ensembles."
+  canonical="https://andrewlastrapes.com/"
 >
   <Header />
   <main>
     <Hero />
     <About />
+
+    <!-- Internal link to the primary commercial landing page -->
+    <section class="section bg-white/50">
+      <div class="container">
+        <div class="card p-8 md:p-12 flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
+          <div class="max-w-xl">
+            <p class="eyebrow">Book the Band</p>
+            <h2 class="font-serif text-3xl md:text-4xl leading-tight">
+              Looking for an Atlanta jazz band for hire?
+            </h2>
+            <p class="mt-3 body-copy">
+              Visit our dedicated booking page for full details on lineups, event types, music style, and how to get in touch about your date.
+            </p>
+          </div>
+          <div class="shrink-0">
+            <a href="/atlanta-jazz-band-for-hire" class="button-primary whitespace-nowrap">
+              Atlanta jazz band for hire →
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <MediaPreview />
     <EventTypes />
     <ContactSection />

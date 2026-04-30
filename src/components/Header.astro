@@ -1,3 +1,11 @@
+---
+interface Props {
+  basePath?: string;
+}
+
+const { basePath = "" } = Astro.props;
+---
+
 <header class="sticky top-0 z-50 border-b border-black/8 bg-cream/90 backdrop-blur">
   <div class="container flex items-center justify-between px-6 py-4 md:px-10">
     <a href="/" class="font-serif text-2xl tracking-wide">
@@ -5,14 +13,11 @@
     </a>
 
     <nav class="hidden items-center gap-8 text-sm md:flex">
-      <a href="#about" class="transition hover:opacity-60">About</a>
-      <a href="#media" class="transition hover:opacity-60">Media</a>
-      <a href="#events" class="transition hover:opacity-60">Events</a>
-      <a href="#contact" class="transition hover:opacity-60">Contact</a>
+      <a href={`${basePath}/#about`} class="transition hover:opacity-60">About</a>
+      <a href={`${basePath}/#media`} class="transition hover:opacity-60">Media</a>
+      <a href={`${basePath}/#events`} class="transition hover:opacity-60">Events</a>
+      <a href={`${basePath}/#contact`} class="transition hover:opacity-60">Contact</a>
     </nav>
 
-    <a href="#contact" class="button-primary hidden md:inline-flex">
-      Inquire
-    </a>
   </div>
 </header>

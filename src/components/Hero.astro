@@ -1,13 +1,26 @@
+---
+interface Props {
+  eyebrow?: string;
+  headline?: string;
+  subtext?: string;
+}
+
+const {
+  eyebrow = "Flexible Live Jazz for Events",
+  headline = "From intimate duos to full ensembles, tailored to your event.",
+  subtext = "Versatile jazz-centered music for weddings, corporate gatherings, private parties, and more — with customizable instrumentation and ensemble sizes to match your setting.",
+} = Astro.props;
+---
+
 <section class="section pt-10 md:pt-16">
   <div class="container grid items-center gap-10 md:grid-cols-[1.02fr_.98fr]">
     <div class="max-w-2xl">
-      <p class="eyebrow">Flexible Live Jazz for Events</p>
+      <p class="eyebrow">{eyebrow}</p>
       <h1 class="font-serif text-5xl leading-none md:text-7xl">
-        From intimate duos to full ensembles, tailored to your event.
+        {headline}
       </h1>
       <p class="mt-6 max-w-xl text-lg leading-8 text-black/75 md:text-xl">
-        Versatile jazz-centered music for weddings, corporate gatherings, private parties, and more — with
-        customizable instrumentation and ensemble sizes to match your setting.
+        {subtext}
       </p>
 
       <div class="mt-8 flex flex-wrap gap-4">
